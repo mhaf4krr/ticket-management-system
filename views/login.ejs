@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="../assets/css/materialize/css/materialize.css">
+    <link rel="stylesheet" href="../assets/css/materialize/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body{
+            height:100vh;
+            width:100vw;
+            background: linear-gradient(#f57c00,#e65100 )
+        }
+
+        .card-image {
+            width:20vw;
+            
+
+            background-position: center;
+        }   
+
+
+        .row{
+            margin-top:10vh;
+        }
+
+        input[type=submit] {
+            color:white;
+            font-size:20px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <nav>
+        <div class="nav-wrapper orange darken-4">
+                <div class="container">
+                        <a href="#" class="brand-logo center hide-on-med-and-down"> LOGIN PANNEL</a>
+        </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="container">
+            <div class="col s12 m8 l8 offset-l2 offset-m2">
+
+                <div class="card z-depth-5">
+                    <div class="card-content">
+                        <span class='card-title center'>Welcome Back, Sign In</span>
+                        <img src="../assets/images/login.jpg" class='card-image' alt="">
+                        
+                                <div class="input-field">
+                                        <i class="material-icons prefix">email</i>
+                                        <input type="email" name="email" id="email" class="validate">
+                                        <label for="email">Your e-Mail </label>
+                                </div>
+
+                                <div class="input-field">
+                                        <i class="material-icons prefix">input</i>
+                                        <input type="password" name="password" id="password" class="validate">
+                                        <label for="password">Your Password </label>
+                                </div>
+                                
+                                <div class='center' id='preloader_on_success'>
+                                    <button class='btn-large orange darken-4 waves-effect' id='login_submit'>SIGN IN</button>
+                                </div>
+                     
+
+                                <div class='message'> </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/scripts/materialize/js/jquery.min.js"></script>
+    <script src="../assets/scripts/materialize/js/materialize.js"></script>
+    <script src="../assets/scripts/materialize/js/materialize.min.js"></script>
+
+    <script>
+    
+    document.querySelector('#login_submit').addEventListener('click',(e)=>{
+
+        console.log('heard')
+        let xhr = new XMLHttpRequest();
+
+            /* Login is done in a way that JSON data is send to the server using XHR for verification , once verified it returns with */
+        xhr.open('POST','/user/login',true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify({email:document.querySelector('#email').value,
+        password:document.querySelector('#password').value}))
+
+        xhr.onload = function() {
+            let result = JSON.parse(xhr.response);
+            console.log(result)
+            if(result.payloadToken && result.login) {
+                localStorage.setItem('x-auth-token',result.payloadToken);
+                document.querySelector('#preloader_on_success').innerHTML = `
+                <hr><div> <span class='flow-text'>Please Wait, as we Sign you in ...</span> </div>
+                <div class="progress">
+                <div class="indeterminate"></div>
+                </div>`;
+
+                setTimeout(()=>{
+
+                   window.location.href = "/user/admin"
+
+                },1500)
+            }
+
+            else if(!result.login) {
+                document.querySelector('.message').innerHTML = `<span class='flow-text'> ${result.message} </span> `
+
+                setTimeout(()=>{document.querySelector('.message').innerHTML = ""},2000)
+
+            }
+        }
+    })
+
+    </script>
+
+</body>
+</html>

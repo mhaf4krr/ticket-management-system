@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ticket Analysis</title>
+    <link rel="stylesheet" href="../assets/css/materialize/css/materialize.css">
+    <link rel="stylesheet" href="../assets/css/materialize/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+    
+    body {
+        background:linear-gradient(#42a5f5 ,#0d47a1 );
+            height:100vh;
+            width:100vw;
+    }
+
+    h5 {
+            font-size:20px;
+    }
+
+    </style>
+
+</head>
+<body>
+        <nav>
+                <div class='nav-wrapper blue darken-4'>
+                        <div class="container">
+                                        <a href="#" class="brand-logo left"></a>
+                        </div>
+                </div>
+        </nav>
+
+    <div class="row">
+
+        <div class="col s12 m10 l10 offset-l1 offset-m1">
+                <div class="container center">
+                        <div class="card">
+
+                                        <div class="card-content">
+                                                <span class="card-title">
+                                                        <h4>Ticket ID:  <span id='ticked_id'><%=ticket.ticket_id%></span> </h4>
+                                                </span>             
+                                        
+                                        <div>  <span class='card-title' > 
+                                                <h5>Dispatch Number : <span id='dispatch_number'><%=ticket.ticket_dispatch%></span></h5>        
+                                        </span></div>
+                                                                        
+                                                <div class="input-field">
+                                                        <form >
+                                                                        
+
+                                                                        <div class="input-field">
+                                                                                <h5>Name : <%=ticket.name%></h5>
+                                                                        </div>
+                                                            
+                                                                        <div class="input-field">
+                                                                                <h5>Reg No: <%=ticket.reg_number%></h5>
+                                                                        </div>
+                                                            
+
+                                                                        
+                                                                        <div class="input-field">
+                                                                                        <h5>Dated : <%=ticket.date_date%>/<%=ticket.date_month%>/<%=ticket.date_year%></h5>
+                                                                        </div>
+
+                                                                        <div class="input-field">
+                                                                                <h5>email : <%=ticket.email%></h5>
+                                                                        </div>
+                                                            
+                                                                        <div class="input-field">
+                                                                                <h5>Concerned Department : <%=ticket.concerned_dept%></h5>
+                                                                        </div>
+                                                            
+                                                                        <div class="input-field">
+                                                                                <h5 class='teal-text'>Message : <%=ticket.ticket_body%></h5>
+                                                                        </div>
+
+                                                                        <div class="input-field" id='correspondance' >
+                                                                          <h5> </h5>      
+                                                                        </div>
+                                                                        
+                                                                        <hr>
+                                                                         <h4 class='center'> Control Actions </h4>
+
+                                                                        <hr>
+
+                                                                         <div>
+                                                                                
+                                                                                <div id='forward_menu_prime'>
+                                                                                        <h5 class='blue-text'> Forward this ticket to the concerned department , if ticket is not related to the current department</h5>
+                                                                                        <h5><span> Forward this to other Department <a class='btn' id='forward_btn'>Forward</a></span></h5>
+                                                                                </div>
+
+                                                                                
+
+                                                                                <div class="input-field select" id='forward_menu'>
+                                                                                                <h5>Forward to Following Department</h5>
+                                                                                                <select name="concerned_dept" class="browser-default" id="concerned_dept" required>
+                                                                                                    <optgroup label="School of Engineering and Technology">
+                                                                                                        <option value="CSE">Computer Science and Engineering</option>
+                                                                                                        <option value="ME">Mechanical Engineering</option>
+                                                                                                        <option value="EE">Electrical Engineering</option>
+                                                                                                        <option value="ECE">Electronics and Communication Engineering</option>
+                                                                                                        <option value="CE">Civil Engineering</option>
+                                                                                                        <option value="FT">Food Technology</option>
+                                                                                                        <option value="CS">Computer Science</option>
+                                                                                                    </optgroup>
+                                                                                                    <optgroup label="School of Humanities and Social Sciences">
+                                                                                                            <option value="ELL">English Language and Literature</option>
+                                                                                                            <option value="IS">Islamic Studies</option>
+                                                                                                    </optgroup>
+                                                                                                </select>
+
+                                                                                                <div class="text-field">
+                                                                                        <h5>Dispatch Number :</h5>
+                                                                                        <input type="text" name="dispatch_value" id="dispatch_value" class='validate' placeholder="for interdepartmental" required>
+                                                                                                </div>
+
+
+                                                                                                <div class="text-field">
+                                                                                                <h5>Remarks for other Department:</h5>
+                                                                                                <input type="text" name="correspondance" id="official_correspondance_value" class='validate' placeholder="Optional" required>
+                                                                                                </div>
+                                                                                                
+                                                                                </div>
+
+
+                                                                                
+
+                                                                                
+                                                                                <div class="input-field" id='resolved_menu'>
+                                                                                                <hr>
+                                                                                        <h5>
+                                                                                                <span>Issue has been Resolved <a class='btn' id='close_btn'>Close Ticket</a></span>
+                                                                                        </h5>
+                                                                                </div>
+
+
+                                                                                <hr>
+
+                                                                                <div class="text-field" id='remarks_menu'>
+                                                                                        <h5>Official Remarks :</h5>
+                                                                                        <input type="text" name="" id="official_remarks" class='validate' placeholder='Closing Remarks (Required to close the Ticket)' required>
+                                                                                </div>
+
+                                                                         </div>
+
+                                                                         <div class="btn-large red accent-1 black-text" id='update_btn'>Update Ticket</div>
+                                                        
+                                                            
+                                                                    </form>
+                                        </div>
+                        </div>
+
+                    </div>
+        </div>
+
+    </div>
+
+    <script src="../assets/scripts/ticketControl.js"></script>
+    <script src="../assets/scripts/materialize/js/jquery.min.js"></script>
+    <script src="../assets/scripts/materialize/js/materialize.js"></script>
+    <script src="../assets/scripts/materialize/js/materialize.min.js"></script> 
+</body>
+</html>
+
+
+

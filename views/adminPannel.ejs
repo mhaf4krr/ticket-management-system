@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Pannel</title>
+    <link rel="stylesheet" href="../assets/css/materialize/css/materialize.css">
+    <link rel="stylesheet" href="../assets/css/materialize/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+    #badgeNotify{
+        position:relative;
+        right:40px;
+    }
+
+    body {
+        height:100vh;
+        background:linear-gradient(#42a5f5 ,#0d47a1 )
+    }
+
+    .textCard {
+        font-size:45px;
+        color:#2e7d32;
+        font-weight: bolder;
+    }
+
+    .collection > li:nth-child(even) {
+        background: #cfd8dc 
+    }
+
+    .collection > li:hover {
+        background: #00796b 
+    }
+
+  
+    </style>
+</head>
+<body>
+    <nav>
+            <div class="nav-wrapper blue darken-4">
+                    <div class="container hide-on-med-and-up center"><a href="#" class="flow-text concerned_dept">//</a></div>
+                <div class="container hide-on-med-and-down ">
+                        <a href="#" class="brand-logo concerned_dept"> // </a>
+                        <ul class='right'>
+                            
+
+                            <li>  
+                                <div class="input-field">
+                                  <input id="search" type="search" required placeholder="Search for Tickets (UID or Dispatch)">
+                                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                  <i class="material-icons">close</i>
+                                </div>
+                             </li>
+
+                            <li>
+                                <a href="" class="btn blue darken-3 waves-effect" id='logout_btn'>
+                                    <i class="material-icons left ">call_missed_outgoing</i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                </div>
+            </div>
+    </nav>
+
+
+    <div class='container' id='search_results'>
+
+        <div class="card">
+            <div class="card-content blue lighten-5">
+                    <span class="card-title flow-text center">
+                            Search Results
+                    </span>
+
+                    <div id="search-inner">
+
+                    </div>
+                   
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="conatiner hide-on-small-only">
+            <div class="col m5 l4">
+                <div class="card">
+                    <div class="card-content blue lighten-5">
+                            <span class="card-title flow-text center">
+                                    Open Tickets
+                            </span>
+
+                            <p class='center textCard' id='open_count'>50</p>
+                           
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col m5 l4 offset-m2">
+                    <div class="card">
+                        <div class="card-content blue lighten-5">
+                                <span class="card-title flow-text center">
+                                        Re-Opened Tickets
+                                </span>
+    
+                                <p class='center textCard' id='reopen_count'>10</p>
+
+                            
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col m8 l4 offset-m2 hide-on-med-and-down">
+                    <div class="card">
+                        <div class="card-content blue lighten-5">
+                                <span class="card-title flow-text center">
+                                        Closed Tickets
+                                </span>
+    
+                                <p class='center textCard' id='closed_count'>20</p>
+                                
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+    
+
+            <div class="col m4 l4 s12">
+                <ul id='open-tickets-list' class="collection with-header">
+                    <li class="collection-header center">
+                        <h5>Open Tickets</h5>
+                    </li>
+
+                        
+                </ul>
+            </div>
+
+
+
+            <div class="col m4 l4 s12">
+                    <ul id='reopened-tickets-list' class="collection with-header">
+                        <li class="collection-header center">
+                            <h5>Re-Opened Tickets</h5>
+                        </li>
+                            
+                    </ul>
+                </div>
+            
+                <div class="col m4 l4 s12">
+                <ul id='closed-tickets-list' class="collection with-header">
+                    <li class="collection-header center">
+                        <h5>Closed Tickets</h5>
+                    </li>
+                        
+                </ul>
+            </div>
+
+        
+    </div>
+
+
+    <script src="../assets/scripts/pannel.js"></script>
+    <script src="../assets/scripts/materialize/js/jquery.min.js"></script>
+    <script src="../assets/scripts/materialize/js/materialize.js"></script>
+    <script src="../assets/scripts/materialize/js/materialize.min.js"></script>
+</body>
+</html>
